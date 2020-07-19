@@ -44,9 +44,22 @@ struct ContentView: View {
     }
     
     var body: some View {
-        Text("purr")
-            .onAppear(perform: prepareHaptics)
-            .onTapGesture(perform: complexSuccess)
+        HStack {
+            Image(systemName: "ant")
+                .padding()
+                .font(.headline)
+            Text("purr")
+                .font(.headline)
+                .padding()
+                .font(.headline)
+                .onAppear(perform: prepareHaptics)
+                .onTapGesture(perform: complexSuccess)
+        }
+        .padding()
+        .font(.headline)
+        .background(Color.yellow)
+        .clipShape(Capsule())
+        .shadow(radius: 10)
     }
 }
 
