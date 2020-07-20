@@ -10,6 +10,9 @@ import CoreHaptics
 
 struct ContentView: View {
     @State private var engine: CHHapticEngine?
+    @State private var petPoint: CGPoint?
+    @State private var hairRoots: [CGPoint] = []
+    @State private var showingAlert = false
     
     func prepareHaptics() {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
@@ -44,22 +47,65 @@ struct ContentView: View {
     }
     
     var body: some View {
-        HStack {
-            Image(systemName: "ant")
-                .padding()
-                .font(.headline)
-            Text("purr")
-                .font(.headline)
-                .padding()
-                .font(.headline)
-                .onAppear(perform: prepareHaptics)
-                .onTapGesture(perform: complexSuccess)
+        GeometryReader { geometry in
+            Path { path in
+                for point in self.hairRoots {
+                    let x = point.x
+                    let y = point.y
+                    var xShift = CGFloat(0.0);
+                    
+                    if (self.petPoint != nil) {
+                        if (y < self.petPoint!.y + 30 && y > self.petPoint!.y - 30) {
+                            if (x > self.petPoint!.x - 30 && x < self.petPoint!.x) {
+                                xShift = -10.0
+                            }
+                            if (x < self.petPoint!.x + 30 && x > self.petPoint!.x) {
+                                xShift = 10.0
+                            }
+                        }
+                    }
+                    
+                    path.move(to: CGPoint(x: x, y: y))
+                    path.addLine(to: CGPoint(x: x + xShift, y: y + 40))
+                    path.closeSubpath()
+                }
+            }
+            .stroke(lineWidth: 2.0)
+            .onAppear {
+                var r = 0
+                while (r < Int(geometry.size.height)) {
+                    var c = 0
+                    while (c < Int(geometry.size.width)) {
+                        let x = c + Int.random(in: -5...5)
+                        let y = r + Int.random(in: -5...5)
+                        
+                        self.hairRoots.append(CGPoint(x: x, y: y))
+                        
+                        c += 2
+                    }
+                    
+                    r += 25
+                }
+            }
         }
-        .padding()
-        .font(.headline)
-        .background(Color.yellow)
-        .clipShape(Capsule())
-        .shadow(radius: 10)
+        .onAppear(perform: self.prepareHaptics)
+        .onTapGesture(perform: self.complexSuccess)
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    self.petPoint = gesture.location
+            }
+            .onEnded { gesture in
+                self.petPoint = nil
+                
+                if (gesture.translation.height > 300) {
+                    self.showingAlert = true
+                }
+            }
+        )
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("NICE PET!"), message: Text("MOAR PETS PLZ"), dismissButton: .default(Text("Got it!")))
+        }
     }
 }
 
