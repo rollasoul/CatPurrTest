@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var engine: CHHapticEngine?
     @State private var petPoint: CGPoint?
     @State private var hairRoots: [CGPoint] = []
-    @State private var showingAlert = false
+    @State private var purrResourceId: CHHapticAudioResourceID?
     
     func prepareHaptics() {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
@@ -25,20 +25,38 @@ struct ContentView: View {
         }
     }
     
-    func complexSuccess() {
-        // make sure the
+    func petSuccess() {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
-        var events = [CHHapticEvent]()
+        guard let purrUrl = Bundle.main.url(forResource: "purr", withExtension: "m4a") else {
+            return
+        }
         
-        // create one intense sharp tap
+        // create a dull, strong haptic
+        let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 0)
         let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1)
-        let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 1)
-        let event = CHHapticEvent(eventType: .hapticContinuous, parameters: [intensity, sharpness], relativeTime: 0, duration: 20)
-        events.append(event)
         
-        // convert into pattern
+        // create a curve that fades from 1 to 0 over one second
+        let start = CHHapticParameterCurve.ControlPoint(relativeTime: 0, value: 1)
+        let middle = CHHapticParameterCurve.ControlPoint(relativeTime: 1, value: 1)
+        let end = CHHapticParameterCurve.ControlPoint(relativeTime: 3, value: 0)
+        
+        // use that curve to control the haptic strength
+        let parameter = CHHapticParameterCurve(parameterID: .hapticIntensityControl, controlPoints: [start, middle, end], relativeTime: 0)
+        
         do {
-            let pattern = try CHHapticPattern(events: events, parameters: [])
+            if (self.purrResourceId != nil) {
+                try engine?.unregisterAudioResource(self.purrResourceId!)
+            }
+            self.purrResourceId = try engine?.registerAudioResource(purrUrl, options: [:])
+            
+            // create a continuous haptic event starting immediately
+            let events = [
+                CHHapticEvent(audioResourceID: self.purrResourceId!, parameters: [], relativeTime: 0, duration: 3),
+                CHHapticEvent(eventType: .hapticContinuous, parameters: [sharpness, intensity], relativeTime: 0, duration: 3)
+            ]
+            
+            // convert into pattern
+            let pattern = try CHHapticPattern(events: events, parameterCurves: [parameter])
             let player = try engine?.makePlayer(with: pattern)
             try player?.start(atTime: 0)
         } catch {
@@ -89,7 +107,6 @@ struct ContentView: View {
             }
         }
         .onAppear(perform: self.prepareHaptics)
-        .onTapGesture(perform: self.complexSuccess)
         .gesture(
             DragGesture()
                 .onChanged { gesture in
@@ -99,13 +116,10 @@ struct ContentView: View {
                 self.petPoint = nil
                 
                 if (gesture.translation.height > 300) {
-                    self.showingAlert = true
+                    self.petSuccess()
                 }
             }
         )
-            .alert(isPresented: $showingAlert) {
-                Alert(title: Text("NICE PET!"), message: Text("MOAR PETS PLZ"), dismissButton: .default(Text("Got it!")))
-        }
     }
 }
 

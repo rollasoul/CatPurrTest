@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8FB42CD324C6742E0084326B /* purr.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8FB42CD224C6742E0084326B /* purr.m4a */; };
 		F21AEE9824C4D01000BD7E2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21AEE9724C4D01000BD7E2C /* AppDelegate.swift */; };
 		F21AEE9A24C4D01000BD7E2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21AEE9924C4D01000BD7E2C /* SceneDelegate.swift */; };
 		F21AEE9D24C4D01000BD7E2C /* CatPurrTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F21AEE9B24C4D01000BD7E2C /* CatPurrTest.xcdatamodeld */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8FB42CD224C6742E0084326B /* purr.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = purr.m4a; sourceTree = "<group>"; };
 		F21AEE9424C4D01000BD7E2C /* CatPurrTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatPurrTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21AEE9724C4D01000BD7E2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F21AEE9924C4D01000BD7E2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8FB42CCF24C670260084326B /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				8FB42CD224C6742E0084326B /* purr.m4a */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		F21AEE8B24C4D01000BD7E2C = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +68,7 @@
 		F21AEE9624C4D01000BD7E2C /* CatPurrTest */ = {
 			isa = PBXGroup;
 			children = (
+				8FB42CCF24C670260084326B /* Sounds */,
 				F21AEE9724C4D01000BD7E2C /* AppDelegate.swift */,
 				F21AEE9924C4D01000BD7E2C /* SceneDelegate.swift */,
 				F21AEE9E24C4D01000BD7E2C /* ContentView.swift */,
@@ -104,6 +115,9 @@
 		F21AEE8C24C4D01000BD7E2C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
@@ -136,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F21AEEA724C4D01100BD7E2C /* LaunchScreen.storyboard in Resources */,
+				8FB42CD324C6742E0084326B /* purr.m4a in Resources */,
 				F21AEEA424C4D01100BD7E2C /* Preview Assets.xcassets in Resources */,
 				F21AEEA124C4D01100BD7E2C /* Assets.xcassets in Resources */,
 			);
