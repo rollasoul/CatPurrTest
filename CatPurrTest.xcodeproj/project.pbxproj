@@ -15,6 +15,9 @@
 		F21AEEA124C4D01100BD7E2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F21AEEA024C4D01100BD7E2C /* Assets.xcassets */; };
 		F21AEEA424C4D01100BD7E2C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F21AEEA324C4D01100BD7E2C /* Preview Assets.xcassets */; };
 		F21AEEA724C4D01100BD7E2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21AEEA524C4D01100BD7E2C /* LaunchScreen.storyboard */; };
+		F29D60F624C7A0C5001E6235 /* Fur.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29D60F524C7A0C5001E6235 /* Fur.swift */; };
+		F29D60F824C7AE09001E6235 /* Purr.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29D60F724C7AE09001E6235 /* Purr.swift */; };
+		F2BB474024C79BCD00FBBE70 /* FurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB473F24C79BCD00FBBE70 /* FurView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		F21AEEA324C4D01100BD7E2C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F21AEEA624C4D01100BD7E2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F21AEEA824C4D01100BD7E2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F29D60F524C7A0C5001E6235 /* Fur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fur.swift; sourceTree = "<group>"; };
+		F29D60F724C7AE09001E6235 /* Purr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purr.swift; sourceTree = "<group>"; };
+		F2BB473F24C79BCD00FBBE70 /* FurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,14 +74,17 @@
 		F21AEE9624C4D01000BD7E2C /* CatPurrTest */ = {
 			isa = PBXGroup;
 			children = (
-				8FB42CCF24C670260084326B /* Sounds */,
 				F21AEE9724C4D01000BD7E2C /* AppDelegate.swift */,
 				F21AEE9924C4D01000BD7E2C /* SceneDelegate.swift */,
 				F21AEE9E24C4D01000BD7E2C /* ContentView.swift */,
+				F2BB473F24C79BCD00FBBE70 /* FurView.swift */,
+				F29D60F524C7A0C5001E6235 /* Fur.swift */,
+				F29D60F724C7AE09001E6235 /* Purr.swift */,
 				F21AEEA024C4D01100BD7E2C /* Assets.xcassets */,
 				F21AEEA524C4D01100BD7E2C /* LaunchScreen.storyboard */,
 				F21AEEA824C4D01100BD7E2C /* Info.plist */,
 				F21AEE9B24C4D01000BD7E2C /* CatPurrTest.xcdatamodeld */,
+				8FB42CCF24C670260084326B /* Sounds */,
 				F21AEEA224C4D01100BD7E2C /* Preview Content */,
 			);
 			path = CatPurrTest;
@@ -163,7 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2BB474024C79BCD00FBBE70 /* FurView.swift in Sources */,
 				F21AEE9824C4D01000BD7E2C /* AppDelegate.swift in Sources */,
+				F29D60F624C7A0C5001E6235 /* Fur.swift in Sources */,
+				F29D60F824C7AE09001E6235 /* Purr.swift in Sources */,
 				F21AEE9D24C4D01000BD7E2C /* CatPurrTest.xcdatamodeld in Sources */,
 				F21AEE9F24C4D01000BD7E2C /* ContentView.swift in Sources */,
 				F21AEE9A24C4D01000BD7E2C /* SceneDelegate.swift in Sources */,
