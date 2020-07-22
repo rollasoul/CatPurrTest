@@ -17,6 +17,12 @@ struct Purr {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
         
         do {
+            // reset engine and audio-id in case app comes back into foreground
+            if engine != nil {
+                engine?.stop()
+                self.engine = nil
+                purrResourceId = nil
+            }
             self.engine = try CHHapticEngine()
             try engine?.start()
         } catch {

@@ -16,6 +16,9 @@ struct ContentView: View {
         ZStack {
             FurView(fur: fur)
                 .onAppear(perform: Purr.prepareHaptics)
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    Purr.prepareHaptics()
+                }
                 .gesture(
                     DragGesture()
                         .onChanged { gesture in
