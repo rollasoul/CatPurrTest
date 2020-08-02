@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class Fur: ObservableObject {
+class Fur: ObservableObject {    
     @Published var petPoint: CGPoint?
     
     @Published var hairRoots: [CGPoint] = []
